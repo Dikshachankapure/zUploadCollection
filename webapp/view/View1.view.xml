@@ -1,0 +1,41 @@
+<mvc:View controllerName="demo.zUploadCollectionDemo.controller.View1" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:upload="sap.m.upload">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page showHeader="false">
+					<content>
+						<OverflowToolbar>
+							<core:Icon class="sapUiSmallMarginBegin" visible="{=!${device>/browser/mobile}}" src="sap-icon://message-information"/>
+							<Text wrapping="false" visible="{=!${device>/browser/mobile}}"
+								text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://action-settings" tooltip="More settings" press="onOpenAppSettings"/>
+						</OverflowToolbar>
+								<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" showSeparators="All"
+									change="onChange" fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed"
+									fileSizeExceed="onFileSizeExceed" selectionChange="onSelectionChange" typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete"
+									beforeUploadStarts="onBeforeUploadStarts" uploadTerminated="onUploadTerminated"
+									items="{path : 'oModelAttachment>/items', templateShareable : 'true'}" numberOfAttachmentsText="Uploaded (8)" mode="SingleSelectMaster">
+									<toolbar>
+										<OverflowToolbar id="myId">
+											<Title id="attachmentTitle"/>
+											<ToolbarSpacer/>
+											<Button id="deleteSelectedButton" text="Delete" press="onDeleteSelectedItems" enabled="false" visible="false" type="Transparent"></Button>
+											<ToggleButton id="selectAllButton" text="Select all" press="onSelectAllPress" enabled="false" visible="false" type="Transparent"></ToggleButton>
+											<UploadCollectionToolbarPlaceholder></UploadCollectionToolbarPlaceholder>
+										</OverflowToolbar>
+									</toolbar>
+									<items>
+										<UploadCollectionItem documentId="{oModelAttachment>documentId}" fileName="{oModelAttachment>fileName}"
+											mimeType="{oModelAttachment>mimeType}" thumbnailUrl="{oModelAttachment>thumbnailUrl}" url="{oModelAttachment>url}"
+											enableEdit="{oModelAttachment>enableEdit}" enableDelete="{oModelAttachment>enableDelete}" visibleDelete="{oModelAttachment>visibleDelete}"
+											visibleEdit="{oModelAttachment>visibleEdit}" selected="{oModelAttachment>selected}"></UploadCollectionItem>
+									</items>
+								</UploadCollection>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
